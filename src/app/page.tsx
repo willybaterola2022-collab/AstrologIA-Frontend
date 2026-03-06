@@ -8,6 +8,8 @@ import PricingSection from "@/components/PricingSection";
 import FAQSection from "@/components/FAQSection";
 import BinauralSection from "@/components/BinauralSection";
 import BreathingSection from "@/components/BreathingSection";
+import CosmicToday from "@/components/CosmicToday";
+import GlobalFooter from "@/components/GlobalFooter";
 
 export default function Home() {
   return (
@@ -19,7 +21,11 @@ export default function Home() {
         <HeroSection />
         <div className="glow-divider" />
 
-        {/* S02 — TRUST BAR */}
+        {/* S02 — CLIMA CÓSMICO DE HOY ✨ THE SURPRISE */}
+        <CosmicToday />
+        <div className="glow-divider" />
+
+        {/* S03 — TRUST BAR */}
         <section className="section-pad-sm" style={{ background: "rgba(124,58,237,0.04)" }}>
           <div className="container-max">
             <div style={{ display: "flex", gap: "2rem", justifyContent: "center", flexWrap: "wrap", alignItems: "center" }}>
@@ -27,7 +33,7 @@ export default function Home() {
                 "✦ Swiss Ephemeris — Precisión Astronómica Real",
                 "✦ Psicología Junguiana Clínica",
                 "✦ 18 Módulos de Análisis",
-                "✦ Kabbalah + Hellienger Integrados",
+                "✦ Kabbalah + Hellinger Integrados",
                 "✦ 100% Personalizado",
               ].map(t => (
                 <span key={t} style={{ fontSize: "0.8rem", color: "rgba(248,248,255,0.45)", letterSpacing: "0.03em" }}>{t}</span>
@@ -37,33 +43,36 @@ export default function Home() {
         </section>
         <div className="glow-divider" />
 
-        {/* S03-05 — PAIN + MODULES + COMPARISON + TESTIMONIALS + CTA */}
+        {/* S04-06 — PAIN + MODULES + COMPARISON + TESTIMONIALS + CTA */}
         <ContentSections />
         <div className="glow-divider" />
 
-        {/* S06 — CARTA NATAL LIVE DEMO */}
+        {/* S07 — CARTA NATAL LIVE DEMO */}
         <NatalChartSection />
         <div className="glow-divider" />
 
-        {/* S07 — 8 DIMENSIONS */}
+        {/* S08 — 8 DIMENSIONS */}
         <DimensionsSection />
         <div className="glow-divider" />
 
-        {/* S08 — SINTONÍA PLANETARIA */}
+        {/* S09 — SINTONÍA PLANETARIA */}
         <BinauralSection />
         <div className="glow-divider" />
 
-        {/* S09 — PACING SOMÁTICO */}
+        {/* S10 — PACING SOMÁTICO */}
         <BreathingSection />
         <div className="glow-divider" />
 
-        {/* S10 — PRICING */}
+        {/* S11 — PRICING */}
         <PricingSection />
         <div className="glow-divider" />
 
-        {/* S11 — FAQ */}
+        {/* S12 — FAQ */}
         <FAQSection />
       </main>
+
+      {/* GLOBAL FOOTER */}
+      <GlobalFooter />
     </>
   );
 }
