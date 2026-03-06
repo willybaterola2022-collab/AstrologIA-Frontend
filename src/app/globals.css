@@ -1,0 +1,417 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600&family=Cinzel:wght@400;600&display=swap');
+@import "tailwindcss";
+
+
+:root {
+  --bg-cosmic: #030014;
+  --bg-deep: #06001f;
+  --violet: #7C3AED;
+  --violet-light: #A855F7;
+  --gold: #F59E0B;
+  --gold-light: #FCD34D;
+  --white: #F8F8FF;
+  --white-dim: rgba(248, 248, 255, 0.7);
+  --white-ghost: rgba(248, 248, 255, 0.15);
+  --gradient-hero: linear-gradient(135deg, #030014 0%, #0d0030 50%, #030014 100%);
+  --gradient-violet: linear-gradient(135deg, #7C3AED, #4C1D95);
+  --gradient-gold: linear-gradient(135deg, #F59E0B, #D97706);
+  --glass: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-cosmic);
+  color: var(--white);
+  font-family: 'Inter', -apple-system, sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* TYPOGRAPHY */
+.font-display {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-mystic {
+  font-family: 'Cinzel', serif;
+}
+
+/* GRADIENTS */
+.text-gradient-violet {
+  background: linear-gradient(135deg, #A855F7, #7C3AED, #4C1D95);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #FCD34D, #F59E0B, #D97706);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-cosmic {
+  background: linear-gradient(135deg, #A855F7 0%, #F59E0B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* GLASSMORPHISM */
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background: rgba(124, 58, 237, 0.08);
+  border-color: rgba(124, 58, 237, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(124, 58, 237, 0.15);
+}
+
+/* BUTTONS */
+.btn-cosmic {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, #7C3AED, #5B21B6);
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.4);
+}
+
+.btn-cosmic:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 50px rgba(124, 58, 237, 0.6);
+  background: linear-gradient(135deg, #8B5CF6, #6D28D9);
+}
+
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.1rem 2.8rem;
+  background: linear-gradient(135deg, #F59E0B, #D97706);
+  color: #030014;
+  border: none;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.4);
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 50px rgba(245, 158, 11, 0.6);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  background: transparent;
+  color: rgba(248, 248, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  border-color: rgba(124, 58, 237, 0.5);
+  color: #A855F7;
+  background: rgba(124, 58, 237, 0.05);
+}
+
+/* SECTIONS */
+.section-pad {
+  padding: 6rem 1.5rem;
+}
+
+.section-pad-sm {
+  padding: 4rem 1.5rem;
+}
+
+.container-max {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.container-sm {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* GLOWING DIVIDER */
+.glow-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.4), rgba(245, 158, 11, 0.4), transparent);
+  margin: 0;
+}
+
+/* STAR FIELD CANVAS */
+#stars-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* CONTENT OVER STARS */
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* BADGE */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 1rem;
+  background: rgba(124, 58, 237, 0.15);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  color: #A855F7;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* SCROLL ANIMATIONS (via framer-motion data attrs) */
+[data-fade] {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* FORM */
+.cosmic-input {
+  width: 100%;
+  padding: 0.85rem 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  color: white;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.cosmic-input:focus {
+  border-color: rgba(124, 58, 237, 0.5);
+}
+
+.cosmic-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.cosmic-input option {
+  background: #0d0030;
+  color: white;
+}
+
+/* GRID CARDS */
+.modules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+/* TABLE */
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 0.85rem 1.25rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.9rem;
+}
+
+.comparison-table thead th {
+  background: rgba(124, 58, 237, 0.1);
+  color: #A855F7;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+.comparison-table tbody tr:hover td {
+  background: rgba(124, 58, 237, 0.03);
+}
+
+/* PRICING CARDS */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.pricing-card {
+  border-radius: 1.5rem;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-card.featured {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(76, 29, 149, 0.2));
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  box-shadow: 0 0 60px rgba(124, 58, 237, 0.15);
+}
+
+.pricing-card:not(.featured) {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ACCORDION (FAQ) */
+.faq-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  padding: 1.25rem 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.faq-answer {
+  padding: 0 0 1.25rem;
+  color: var(--white-dim);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* ORBIT ANIMATION */
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(120px) rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg) translateX(120px) rotate(-360deg);
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* SEPHIROT TREE */
+.sephirot-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.sephirot-node {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sephirot-node:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .section-pad {
+    padding: 4rem 1rem;
+  }
+
+  .modules-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+}
