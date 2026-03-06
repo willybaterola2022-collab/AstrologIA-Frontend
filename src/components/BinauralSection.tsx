@@ -108,7 +108,7 @@ export default function BinauralSection() {
     const pColor = PLANETARY_FREQUENCIES[planet].color;
 
     return (
-        <section className="section-pad" style={{ background: "rgba(0,0,0,0.3)" }}>
+        <section id="sonido" className="section-pad" style={{ background: "rgba(0,0,0,0.3)" }}>
             <div className="container-sm">
                 <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
                     <h2 className="font-display" style={{ fontSize: "clamp(1.5rem,3vw,2.2rem)", fontWeight: 700, marginBottom: "0.5rem" }}>

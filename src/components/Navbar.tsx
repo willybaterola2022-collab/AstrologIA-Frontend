@@ -6,10 +6,10 @@ const NAV_LINKS = [
     { href: "/carta-natal", label: "Carta Natal" },
     { href: "/manual-del-ser", label: "Manual del Ser" },
     { href: "/sinastria", label: "Sinastría" },
-    { href: "/quiron", label: "Quirón" },
-    { href: "/retorno-saturno", label: "Saturno" },
+    { href: "/#sonido", label: "🎵 Frecuencias" },
     { href: "/precios", label: "Precios" },
 ];
+
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
