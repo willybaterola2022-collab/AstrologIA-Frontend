@@ -214,18 +214,18 @@ export function WealthTimerTeaser() {
     );
 }
 
-// S13 — SOFI teaser (ROCKSTAR)
-export function SofiTeaser() {
+// S13 — Malka teaser (ROCKSTAR)
+export function MalkaTeaser() {
     return (
         <section className="section-pad" style={{ background: "radial-gradient(ellipse 60% 40% at 50% 50%, rgba(124,58,237,0.08) 0%, transparent 70%)" }}>
             <div className="container-sm">
                 <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
-                    <span className="badge" style={{ marginBottom: "0.75rem", display: "inline-flex" }}>🎙️ SOFI · Astróloga IA de Voz</span>
+                    <span className="badge" style={{ marginBottom: "0.75rem", display: "inline-flex" }}>🎙️ Malka · Astróloga IA de Voz</span>
                     <h2 className="font-display" style={{ fontSize: "clamp(1.5rem,3vw,2.5rem)", fontWeight: 700, lineHeight: 1.1, marginBottom: "1rem" }}>
                         La primera astróloga que te escucha
                     </h2>
                     <p style={{ color: "rgba(248,248,255,0.45)", fontSize: "0.9rem", maxWidth: 480, margin: "0 auto 2rem" }}>
-                        SOFI conoce tu carta natal completa, sabe qué está pasando en el cielo hoy, y responde tus preguntas más profundas — por voz, en tiempo real.
+                        Malka conoce tu carta natal completa, sabe qué está pasando en el cielo hoy, y responde tus preguntas más profundas — por voz, en tiempo real.
                     </p>
                 </div>
 
@@ -235,7 +235,7 @@ export function SofiTeaser() {
                         <div style={{ display: "flex", gap: "0.6rem", alignItems: "flex-start" }}>
                             <span style={{ fontSize: "0.9rem", flexShrink: 0 }}>👤</span>
                             <div style={{ background: "rgba(255,255,255,0.06)", padding: "0.6rem 0.85rem", borderRadius: "0 0.75rem 0.75rem 0.75rem", fontSize: "0.8rem", color: "rgba(248,248,255,0.7)" }}>
-                                "SOFI, ¿por qué siempre termino atrayendo personas que me necesitan?"
+                                "Malka, ¿por qué siempre termino atrayendo personas que me necesitan?"
                             </div>
                         </div>
                         <div style={{ display: "flex", gap: "0.6rem", alignItems: "flex-start", justifyContent: "flex-end" }}>
@@ -247,7 +247,7 @@ export function SofiTeaser() {
                     </div>
 
                     {/* Mic button */}
-                    <Link href="/sofi" style={{
+                    <Link href="/malka" style={{
                         display: "inline-flex", alignItems: "center", justifyContent: "center",
                         width: 72, height: 72, borderRadius: "50%",
                         background: "linear-gradient(135deg,#7C3AED,#5B21B6)",
@@ -257,7 +257,7 @@ export function SofiTeaser() {
                         marginBottom: "1rem",
                         animation: "pulse 2s ease-in-out infinite",
                     }}>🎙️</Link>
-                    <p style={{ fontSize: "0.75rem", color: "rgba(248,248,255,0.35)" }}>Presiona para hablar con SOFI · Auriculares recomendados</p>
+                    <p style={{ fontSize: "0.75rem", color: "rgba(248,248,255,0.35)" }}>Presiona para hablar con Malka · Auriculares recomendados</p>
                 </div>
             </div>
         </section>
@@ -270,7 +270,7 @@ export function TestimonialsSection() {
         { name: "Valeria M.", sign: "Escorpio ♏", text: "Cuando vi mi Nodo Norte en Acuario en Casa 11, entendí por qué siempre me había sentido distinta. No rara — pionera. Eso cambió todo.", avatar: "🌟" },
         { name: "Carlos R.", sign: "Sagitario ♐", text: "El Wealth Timer me dijo que esperara hasta mayo para negociar mi contrato. Esperé. Subida del 34%. No es casualidad, es timing.", avatar: "⭐" },
         { name: "Ana L.", sign: "Cáncer ♋", text: "Descubrí que soy 'El Rescatador' en relaciones gracias a los Patrones. Ahora entiendo por qué me agotaba tanto. Por fin tengo herramientas.", avatar: "✨" },
-        { name: "Miguel T.", sign: "Géminis ♊", text: "SOFI es de otro planeta (literalmente). Le pregunté sobre mi miedo al compromiso y respondió como si me conociera de toda la vida. Por el Marte en Virgo en Casa 7.", avatar: "🌙" },
+        { name: "Miguel T.", sign: "Géminis ♊", text: "Malka es de otro planeta (literalmente). Le pregunté sobre mi miedo al compromiso y respondió como si me conociera de toda la vida. Por el Marte en Virgo en Casa 7.", avatar: "🌙" },
         { name: "Laura P.", sign: "Capricornio ♑", text: "Mi terapeuta y yo llevamos 2 años trabajando mi patrón de abandono. En 10 minutos con AstrologIA lo vi nombrado y mapeado. Lloré.", avatar: "💫" },
         { name: "Diego F.", sign: "Aries ♈", text: "Pensé que era solo astrología. Es autoconocimiento de verdad. El Manual del Ser me dio más insights que 3 tests de personalidad juntos.", avatar: "🔥" },
     ];
@@ -314,7 +314,7 @@ export function ComparisonSection() {
         { feature: "Patrones tóxicos", generic: "❌", astrologia: "8 arquetipos relacionales" },
         { feature: "Propósito de vida", generic: "Genérico", astrologia: "Nodo Norte exacto por signo y casa" },
         { feature: "Timing financiero", generic: "❌", astrologia: "Wealth Timer™ — 90 días" },
-        { feature: "Astróloga de voz", generic: "❌", astrologia: "SOFI — 24/7 disponible" },
+        { feature: "Astróloga de voz", generic: "❌", astrologia: "Malka — 24/7 disponible" },
         { feature: "Coste", generic: "€0 (pero sin valor real)", astrologia: "Gratis hasta que lo necesitas de verdad" },
     ];
 
@@ -367,12 +367,12 @@ export function FinalCTASection() {
                     <Link href="/carta-natal" className="btn-gold" style={{ padding: "0.9rem 2.25rem", fontSize: "1rem" }}>
                         Calcular mi carta natal →
                     </Link>
-                    <Link href="/sofi" style={{
+                    <Link href="/malka" style={{
                         padding: "0.9rem 2.25rem", fontSize: "1rem", borderRadius: "0.75rem",
                         border: "1px solid rgba(124,58,237,0.4)", color: "rgba(248,248,255,0.7)",
                         textDecoration: "none", fontWeight: 600, transition: "all 0.2s",
                     }}>
-                        🎙️ Hablar con SOFI
+                        🎙️ Hablar con Malka
                     </Link>
                 </div>
                 <p style={{ fontSize: "0.75rem", color: "rgba(248,248,255,0.2)", marginTop: "1.5rem" }}>

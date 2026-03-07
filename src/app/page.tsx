@@ -15,7 +15,7 @@ import {
   NodoNorteTeaser,
   PatronesTeaser,
   WealthTimerTeaser,
-  SofiTeaser,
+  MalkaTeaser,
   TestimonialsSection,
   ComparisonSection,
   FinalCTASection,
@@ -90,8 +90,8 @@ export default function Home() {
         <WealthTimerTeaser />
         <div className="glow-divider" />
 
-        {/* S13 — SOFI ⭐ ROCKSTAR — Astróloga IA de voz */}
-        <SofiTeaser />
+        {/* S13 — Malka ⭐ ROCKSTAR — Astróloga IA de voz */}
+        <MalkaTeaser />
         <div className="glow-divider" />
 
         {/* S14 — TESTIMONIALES — Social proof + historias */}

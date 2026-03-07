@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import GlobalFooter from "@/components/GlobalFooter";
+import { getNorthNodeReal } from "@/lib/ephemeris";
 
 // 12-sign × 12-house North Node interpretations (curated, copywriter-ready slots)
 const NORTH_NODE_SIGNS: Record<string, {
@@ -27,26 +28,6 @@ const ELEMENT_COLORS: Record<string, string> = {
     Fuego: "#EF4444", Tierra: "#10B981", Aire: "#60A5FA", Agua: "#A855F7"
 };
 
-// Simple North Node calculation: true node moves opposite to zodiac about 1 cycle per 18.6 years
-function calculateNorthNodeSign(year: number, month: number, day: number): string {
-    // Known reference: North Node was at 0° Aries (start of Aries) circa Jan 2005
-    // Mean Node cycle: 6793.5 days
-    const refDate = new Date("2005-01-09").getTime();
-    const birthDate = new Date(`${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`).getTime();
-    const diffDays = (birthDate - refDate) / 86400000;
-    const cycleDays = 6793.5;
-    // Node moves RETROGRADE through zodiac
-    let longitude = 0 - (diffDays / cycleDays) * 360;
-    longitude = ((longitude % 360) + 360) % 360;
-    const signNames = ["Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario", "Capricornio", "Acuario", "Piscis"];
-    return signNames[Math.floor(longitude / 30)];
-}
-
-// Calculate house from birth hour (simplified — noon = house 1 pivot)
-function calculateHouse(hour: number): number {
-    return Math.floor(hour / 2) % 12 + 1;
-}
-
 type Step = "form" | "result";
 
 export default function NodoNorteClient() {
@@ -54,16 +35,29 @@ export default function NodoNorteClient() {
     const [form, setForm] = useState({ year: "1990", month: "5", day: "15", hour: "14" });
     const [result, setResult] = useState<{ sign: string; house: number } | null>(null);
     const [loading, setLoading] = useState(false);
+    const [calcError, setCalcError] = useState<string | null>(null);
     const [explorerSign, setExplorerSign] = useState<string | null>(null);
 
     const signList = Object.keys(NORTH_NODE_SIGNS);
 
     async function handleCalculate() {
         setLoading(true);
-        await new Promise(r => setTimeout(r, 1200));
-        const sign = calculateNorthNodeSign(parseInt(form.year), parseInt(form.month), parseInt(form.day));
-        const house = calculateHouse(parseInt(form.hour));
-        setResult({ sign, house });
+        setCalcError(null);
+        // Real Swiss Ephemeris — no demo math
+        const nodeResult = await getNorthNodeReal({
+            year: parseInt(form.year),
+            month: parseInt(form.month),
+            day: parseInt(form.day),
+            hour: parseInt(form.hour),
+            lat: 40.4168, // Madrid default — city picker in Sprint D
+            lon: -3.7038,
+        });
+        if (!nodeResult.isPrecise || nodeResult.error) {
+            setCalcError(nodeResult.error || "El backend está despertando (30 segundos). Vuelve a intentar.");
+            setLoading(false);
+            return;
+        }
+        setResult({ sign: nodeResult.sign, house: nodeResult.house });
         setStep("result");
         setLoading(false);
     }
@@ -127,8 +121,16 @@ export default function NodoNorteClient() {
                                     onClick={handleCalculate}
                                     disabled={loading}
                                 >
-                                    {loading ? "⬆️ Calculando tu misión..." : "Descubrir mi Nodo Norte →"}
+                                    {loading ? "⬆️ Calculando con Swiss Ephemeris..." : "Descubrir mi Nodo Norte →"}
                                 </button>
+                                {calcError && (
+                                    <div style={{ marginTop: "0.75rem", padding: "0.75rem", background: "rgba(239,68,68,0.07)", borderRadius: "0.5rem", border: "1px solid rgba(239,68,68,0.15)" }}>
+                                        <p style={{ fontSize: "0.75rem", color: "#F87171", lineHeight: 1.6 }}>⚠️ {calcError}</p>
+                                        <button onClick={handleCalculate} style={{ marginTop: "0.4rem", fontSize: "0.72rem", color: "#A855F7", background: "none", border: "none", cursor: "pointer", textDecoration: "underline" }}>
+                                            Reintentar →
+                                        </button>
+                                    </div>
+                                )}
                             </div>
                         )}
 

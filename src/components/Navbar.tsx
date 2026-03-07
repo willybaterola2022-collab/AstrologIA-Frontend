@@ -16,7 +16,7 @@ const NAV_EXPLORE = [
     { href: "/nodo-norte", label: "⬆️ Nodo Norte — Misión de Vida" },
     { href: "/patrones", label: "💔 Patrones Relacionales" },
     { href: "/wealth-timer", label: "💰 Wealth Timer™" },
-    { href: "/sofi", label: "🎙️ SOFI — Astróloga de Voz" },
+    { href: "/malka", label: "🎙️ Malka — Astróloga de Voz" },
 ];
 
 export default function Navbar() {
@@ -109,14 +109,14 @@ export default function Navbar() {
 
             {/* CTAs */}
             <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
-                <Link href="/sofi" style={{
+                <Link href="/malka" style={{
                     width: 36, height: 36, borderRadius: "50%",
                     background: "linear-gradient(135deg,rgba(124,58,237,0.3),rgba(124,58,237,0.1))",
                     border: "1px solid rgba(124,58,237,0.4)",
                     display: "flex", alignItems: "center", justifyContent: "center",
                     textDecoration: "none", fontSize: "1rem", transition: "all 0.2s",
                 }}
-                    title="Habla con SOFI"
+                    title="Habla con Malka"
                     onMouseOver={e => { (e.currentTarget as HTMLElement).style.boxShadow = "0 0 20px rgba(124,58,237,0.5)"; }}
                     onMouseOut={e => { (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
                 >🎙️</Link>
