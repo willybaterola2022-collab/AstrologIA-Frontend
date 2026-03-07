@@ -15,7 +15,7 @@ const NAV_EXPLORE = [
     { href: "/retorno-saturno", label: "🪐 Retorno de Saturno" },
     { href: "/nodo-norte", label: "⬆️ Nodo Norte — Misión de Vida" },
     { href: "/patrones", label: "💔 Patrones Relacionales" },
-    { href: "/wealth-timer", label: "💰 Wealth Timer™" },
+    { href: "/ventanas-de-fortuna-astrologica", label: "💰 Wealth Timer™" },
     { href: "/malka", label: "🎙️ Malka — Astróloga de Voz" },
 ];
 

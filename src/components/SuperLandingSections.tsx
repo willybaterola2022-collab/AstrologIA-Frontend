@@ -204,7 +204,7 @@ export function WealthTimerTeaser() {
                     </div>
                     <div style={{ textAlign: "center" }}>
                         <p style={{ fontSize: "0.72rem", color: "rgba(248,248,255,0.25)", marginBottom: "0.75rem" }}>* Ejemplo basado en carta natal tipo · Tu análisis será distinto</p>
-                        <Link href="/wealth-timer" className="btn-gold" style={{ display: "inline-flex" }}>
+                        <Link href="/ventanas-de-fortuna-astrologica" className="btn-gold" style={{ display: "inline-flex" }}>
                             Ver mis ventanas de dinero →
                         </Link>
                     </div>
