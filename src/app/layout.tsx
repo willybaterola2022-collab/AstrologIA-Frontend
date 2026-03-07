@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
+
 
 export const metadata: Metadata = {
   title: "AstrologIA — El Manual del Ser | Tu mapa psicológico-cósmico completo",
@@ -100,6 +103,10 @@ export default function RootLayout({
           </noscript>
         )}
         {children}
+        {/* Vercel Analytics — activado desde Vercel Dashboard sin Google */}
+        <Analytics />
+        {/* Core Web Vitals — LCP, CLS, FID en tiempo real */}
+        <SpeedInsights />
       </body>
     </html>
   );
