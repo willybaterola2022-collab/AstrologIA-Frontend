@@ -87,7 +87,7 @@ export function NodoNorteTeaser() {
                                 </div>
                             ))}
                         </div>
-                        <Link href="/nodo-norte" className="btn-gold" style={{ display: "inline-flex" }}>
+                        <Link href="/mision-de-vida-nodo-norte" className="btn-gold" style={{ display: "inline-flex" }}>
                             Calcular mi misión de vida →
                         </Link>
                     </div>
@@ -145,7 +145,7 @@ export function PatronesTeaser() {
 
                 <div style={{ textAlign: "center" }}>
                     <p style={{ fontSize: "0.82rem", color: "rgba(248,248,255,0.35)", marginBottom: "1.25rem" }}>8 arquetipos · Basado en Venus, Marte, Casa 7, Quirón y Plutón</p>
-                    <Link href="/patrones" className="btn-primary">Descubrir mi patrón →</Link>
+                    <Link href="/por-que-repites-patrones-en-amor" className="btn-primary">Descubrir mi patrón →</Link>
                 </div>
 
                 {/* Native Ad */}
