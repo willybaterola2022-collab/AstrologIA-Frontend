@@ -31,6 +31,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: `${base}/arquetipos-personalidad`, changeFrequency: "monthly", priority: 0.80 },
         { url: `${base}/mejor-carrera-segun-tu-carta-natal`, changeFrequency: "monthly", priority: 0.78 },
         { url: `${base}/cartas-astrologicas-de-famosos`, changeFrequency: "weekly", priority: 0.82 },
+        { url: `${base}/kabbalah-y-tu-arbol-de-la-vida`, changeFrequency: "monthly", priority: 0.83 },
+
+        // AstroKids — Sprint F
+        { url: `${base}/astrologia-para-ninos`, changeFrequency: "weekly", priority: 0.92 },
+        { url: `${base}/astrologia-para-ninos/calculadora`, changeFrequency: "weekly", priority: 0.88 },
     ];
 
     return routes.map(r => ({ ...r, lastModified: new Date() }));
