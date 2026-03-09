@@ -7,7 +7,7 @@
 -- ─── EXTENSIONES ──────────────────────────────────────────
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE EXTENSION IF NOT EXISTS "pg_trgm";    -- búsqueda fuzzy
--- CREATE EXTENSION IF NOT EXISTS "vector"; -- activar cuando hagamos Knowledge Base RAG
+CREATE EXTENSION IF NOT EXISTS "vector";     -- pgvector — RAG + Skynet embeddings
 
 -- ─── 1. PERFILES DE USUARIO ───────────────────────────────
 -- Se crea automáticamente cuando el user completa su primer módulo
@@ -176,8 +176,9 @@ CREATE POLICY "match_own" ON match_sessions FOR ALL USING (
   auth.uid() = user_id OR user_id IS NULL
 );
 
--- email_leads: solo service_role puede leer (admin)
-CREATE POLICY "leads_service" ON email_leads FOR ALL USING (auth.role() = 'service_role');
+-- email_leads: insert público (gate captures email without auth) + read service_role only
+CREATE POLICY "leads_insert" ON email_leads FOR INSERT WITH CHECK (true);
+CREATE POLICY "leads_service" ON email_leads FOR SELECT USING (auth.role() = 'service_role');
 
 -- blog_posts: todos pueden leer los publicados
 CREATE POLICY "blog_read" ON blog_posts FOR SELECT USING (published = true);
@@ -216,8 +217,71 @@ WHERE created_at > NOW() - INTERVAL '30 days'
 GROUP BY DATE(created_at)
 ORDER BY day DESC;
 
+-- ─── 8. SKYNET EMBEDDINGS (RAG Knowledge Base) ───────────
+-- Almacena chunks del corpus + vectores para búsqueda semántica
+-- Requiere extensión vector (pgvector) — habilitada arriba
+CREATE TABLE IF NOT EXISTS skynet_embeddings (
+  id           UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  source       TEXT NOT NULL,     -- nombre del archivo fuente
+  category     TEXT NOT NULL,     -- '01_astrologia', '03_kabbalah', etc.
+  author       TEXT,              -- autor del texto
+  title        TEXT,              -- título de la obra
+  chunk_index  INTEGER,           -- posición del chunk en el texto original
+  content      TEXT NOT NULL,     -- texto del chunk (500 tokens aprox)
+  tokens       INTEGER,           -- número de tokens
+  embedding    vector(768),       -- Gemini text-embedding-004 output
+  metadata     JSONB,             -- {year, language, tags, page, ...}
+  created_at   TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Índice para búsqueda por similitud coseno (IVFFlat)
+-- Requiere al menos 100 filas antes de crear este índice
+-- CREATE INDEX IF NOT EXISTS idx_skynet_ivf ON skynet_embeddings
+--   USING ivfflat (embedding vector_cosine_ops) WITH (lists = 100);
+-- (Descomentar cuando haya >100 embeddings)
+
+-- Índice simple para filtrar por categoría
+CREATE INDEX IF NOT EXISTS idx_skynet_category ON skynet_embeddings(category);
+CREATE INDEX IF NOT EXISTS idx_skynet_source ON skynet_embeddings(source);
+
+-- RLS: solo service_role escribe, todos pueden leer (para RAG desde frontend)
+ALTER TABLE skynet_embeddings ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "skynet_read" ON skynet_embeddings FOR SELECT USING (true);
+CREATE POLICY "skynet_write" ON skynet_embeddings FOR ALL USING (auth.role() = 'service_role');
+
+-- Función de búsqueda semántica por similitud coseno
+CREATE OR REPLACE FUNCTION search_skynet(
+  query_embedding vector(768),
+  match_count     INT DEFAULT 5,
+  filter_category TEXT DEFAULT NULL
+)
+RETURNS TABLE (
+  id        UUID,
+  source    TEXT,
+  category  TEXT,
+  author    TEXT,
+  title     TEXT,
+  content   TEXT,
+  similarity FLOAT
+)
+LANGUAGE sql STABLE
+AS $$
+  SELECT
+    id, source, category, author, title, content,
+    1 - (embedding <=> query_embedding) AS similarity
+  FROM skynet_embeddings
+  WHERE
+    (filter_category IS NULL OR category = filter_category)
+    AND embedding IS NOT NULL
+  ORDER BY embedding <=> query_embedding
+  LIMIT match_count;
+$$;
+
 -- ══════════════════════════════════════════════════════════
 -- FIN MIGRATION v1.0
+-- Tablas: profiles, natal_charts, module_results, module_events,
+--         match_sessions, email_leads, blog_posts, skynet_embeddings
+-- Extensiones: uuid-ossp, pg_trgm, vector (pgvector)
 -- ══════════════════════════════════════════════════════════
 SELECT 'Migration v1.0 completada ✅' AS status,
   (SELECT count(*) FROM information_schema.tables WHERE table_schema = 'public') AS tablas_creadas;
