@@ -110,16 +110,19 @@ export default function Navbar() {
             {/* CTAs */}
             <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
                 <Link href="/malka" style={{
-                    width: 36, height: 36, borderRadius: "50%",
-                    background: "linear-gradient(135deg,rgba(124,58,237,0.3),rgba(124,58,237,0.1))",
-                    border: "1px solid rgba(124,58,237,0.4)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    textDecoration: "none", fontSize: "1rem", transition: "all 0.2s",
+                    display: "flex", alignItems: "center", gap: "0.4rem",
+                    padding: "0.5rem 1rem", borderRadius: "2rem",
+                    background: "linear-gradient(135deg,rgba(168,85,247,0.2),rgba(124,58,237,0.4))",
+                    border: "1px solid rgba(168,85,247,0.5)",
+                    textDecoration: "none", fontSize: "0.85rem", fontWeight: 600, color: "#fff",
+                    transition: "all 0.3s", boxShadow: "0 0 15px rgba(124,58,237,0.4)",
                 }}
-                    title="Habla con Malka"
-                    onMouseOver={e => { (e.currentTarget as HTMLElement).style.boxShadow = "0 0 20px rgba(124,58,237,0.5)"; }}
-                    onMouseOut={e => { (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
-                >🎙️</Link>
+                    title="Chatea con Malka"
+                    onMouseOver={e => { (e.currentTarget as HTMLElement).style.boxShadow = "0 0 30px rgba(168,85,247,0.8)"; (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)"; }}
+                    onMouseOut={e => { (e.currentTarget as HTMLElement).style.boxShadow = "0 0 15px rgba(124,58,237,0.4)"; (e.currentTarget as HTMLElement).style.transform = "none"; }}
+                >
+                    <span style={{ fontSize: "1.1rem" }}>🎙️</span> Chat Malka
+                </Link>
                 <Link href="/carta-natal" className="btn-gold" style={{ padding: "0.5rem 1.2rem", fontSize: "0.78rem" }}>
                     Empezar Gratis →
                 </Link>
