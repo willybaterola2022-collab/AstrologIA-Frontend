@@ -66,9 +66,9 @@ export default function MalkaClient() {
 
         try {
             const history = newMsgs.map(m => ({ role: m.role === "user" ? "user" : "model", parts: [{ text: m.content }] }));
-            const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+            const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://astrologaia-backend.onrender.com";
 
-            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
+            const res = await fetch(`${API_BASE_URL}/api/malka/chat`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
