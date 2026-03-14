@@ -68,9 +68,9 @@ export default function MalkaClient() {
 
         try {
             const history = newMsgs.map(m => ({ role: m.role === "user" ? "user" : "model", parts: [{ text: m.content }] }));
-            const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://astrologaia-backend.onrender.com";
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://astrologia-backend-production.up.railway.app';
 
-            const res = await fetch(`${API_BASE_URL}/api/malka/chat`, {
+            const res = await fetch(`${apiUrl}/api/malka/chat`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
